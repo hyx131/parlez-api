@@ -2,19 +2,16 @@
 	"name": "parlez-api",
 	"scripts": {
 		"start": "nodemon src/index.js",
-		"db:reset": "node bin/resetdb.js",
 		"lint": "eslint -c .eslintrc.js --ext .js ./src/.",
 		"lint:fix": "eslint -c .eslintrc.js --ext .js ./src/. --fix"
 	},
 	"dependencies": {
 		"bcrypt": "^4.0.1",
-		"chalk": "^4.0.0",
 		"cors": "^2.8.5",
 		"express": "^4.17.1",
 		"express-session": "^1.17.1",
 		"morgan": "^1.10.0",
 		"pg": "^8.0.2",
-		"pg-native": "^3.0.0",
 		"socket.io": "^2.3.0"
 	},
 	"devDependencies": {

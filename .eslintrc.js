@@ -11,6 +11,7 @@ module.exports = {
     "semi": ["error", "never"],
     "camelcase": "off",
     "no-restricted-syntax": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "import/newline-after-import": ["error", { "count": 2 }],
     "max-len": ["error", {
       "code": 120,
