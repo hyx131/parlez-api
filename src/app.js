@@ -6,12 +6,16 @@ const morgan = require('morgan')
 const cors = require('cors')
 const http = require('http')
 const socket = require('socket.io')
-const db = require('../db/connection/db.js')
+const { Pool } = require('pg')
+const config = require('../config')
+
+const login = require('./routes/login')
+const register = require('./routes/register')
 
 
+const db = new Pool(config.db)
 const app = express()
 const io = socket(http.Server(app))
-db.connect()
 
 // enable cors
 // enable Access-Control-Allow-Origin: *
@@ -30,8 +34,8 @@ app.use(
 )
 
 // ***** routes *****
-const defaultRoutes = require("./routes/default");
-app.use("/auth/", defaultRoutes);
+app.use('/auth/', login(db))
+app.use('/auth/register', register(db))
 
 // server initialize
 module.exports = app
