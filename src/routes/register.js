@@ -1,7 +1,7 @@
 const express = require('express')
 const { hasBodyParams } = require('../middleware/validation')
 // TODO: rename utils folder
-const { getUserByEmailDB, addUserDB, createFriendListDB } = require('../util/auth-queries')
+const { getUserByEmailDB, addUserDB, createFriendListDB } = require('../util/queries')
 const { createHashPw } = require('../util/helpers')
 
 

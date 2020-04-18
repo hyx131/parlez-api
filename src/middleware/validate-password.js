@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt')
-const { getUserByEmailDB } = require('../util/auth-queries')
+const { getUserByEmailDB } = require('../util/queries')
 
 
 module.exports = (db) => async (req, _, next) => {
