@@ -1,52 +1,40 @@
-// load .env data into process.env
-require("dotenv").config();
-require("util").inspect.defaultOptions.depth = null;
+require('util').inspect.defaultOptions.depth = null
 
-// constant setup
-const PORT = process.env.PORT || 3003;
-const ENV = process.env.ENV || "development";
+const express = require('express')
+const session = require('express-session')
+const morgan = require('morgan')
+const cors = require('cors')
+const http = require('http')
+const socket = require('socket.io')
+const db = require('../db/connection/db.js')
 
-// server config
-const express = require("express");
-const app = express();
-const server = require("http").Server(app);
-const io = require("socket.io")(server);
 
-// database connection
-const db = require("./db/connection/db.js");
-db.connect();
+const app = express()
+const io = socket(http.Server(app))
+db.connect()
 
-// additional server set up
-const morgan = require("morgan");
-app.use(morgan("dev"));
-app.use(express.json({ extended: true }));
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + "/public"));
-const session = require("express-session");
+// enable cors
+// enable Access-Control-Allow-Origin: *
+app.use(cors())
+app.options('*', cors())
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+app.use(morgan('dev'))
+app.use(express.json({ extended: true }))
 
 app.use(
   session({
-    secret: "lhl parlez",
+    secret: 'lhl parlez',
     resave: true,
-    saveUninitialized: true
-  })
-);
+    saveUninitialized: true,
+  }),
+)
 
 // ***** routes *****
 const defaultRoutes = require("./routes/default");
 app.use("/auth/", defaultRoutes);
 
 // server initialize
-app.listen(PORT, () => console.log(`Running on port ${PORT}`));
-server.listen(8080);
+module.exports = app
 
 const dbQueries = require("./bin/db/helpers/helperQueries");
 
