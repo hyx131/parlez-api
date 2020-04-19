@@ -1,7 +1,8 @@
 const h = require('./helpers')
 
 
-module.exports = (db, io) => () => {
+// eslint-disable-next-line no-unused-vars
+module.exports = (db, io) => async (req, res, next) => {
   const participantSockets = {}
 
   io.on('connect', (socket) => {

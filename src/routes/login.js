@@ -1,5 +1,5 @@
 const express = require('express')
-const { validatePassword } = require('../middleware/validate-password')
+const validatePassword = require('../middleware/validate-password')
 
 
 // TODO: params validations

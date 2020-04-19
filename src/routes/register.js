@@ -21,7 +21,7 @@ module.exports = (db) => {
       // TODO: have front-end handle pw mismatch
       if (password !== confirmPassword) res.json({ Error: 'Password must match.' })
 
-      const existingEmail = await getUserByEmailDB(email).then((user) => user.email)
+      const existingEmail = await getUserByEmailDB(db, email).then((user) => user)
       if (existingEmail) throw new Error('Email already used.') // TODO: custum error handling
 
       // TODO: db rollback if error from here on
