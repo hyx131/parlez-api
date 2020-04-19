@@ -1,27 +1,23 @@
 {
 	"name": "parlez-api",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "nodemon server.js",
-		"local": "./node_modules/.bin/nodemon -L --ignore public/",
-		"db:reset": "node bin/resetdb.js"
+		"start": "nodemon src/index.js",
+		"lint": "eslint -c .eslintrc.js --ext .js ./src/.",
+		"lint:fix": "eslint -c .eslintrc.js --ext .js ./src/. --fix"
 	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
 	"dependencies": {
-		"bcrypt": "^3.0.6",
-		"chalk": "^2.4.2",
-		"dotenv": "^8.1.0",
+		"bcrypt": "^4.0.1",
+		"cors": "^2.8.5",
 		"express": "^4.17.1",
-		"express-session": "^1.16.2",
-		"morgan": "^1.9.1",
-		"pg": "^7.12.1",
-		"pg-native": "^3.0.0",
-		"socket.io": "^2.2.0"
+		"express-session": "^1.17.1",
+		"morgan": "^1.10.0",
+		"pg": "^8.0.2",
+		"socket.io": "^2.3.0"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"eslint-config-airbnb-base": "^14.1.0",
+		"eslint-plugin-import": "^2.20.2",
+		"nodemon": "^2.0.3"
+	}
 }
